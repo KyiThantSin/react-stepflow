@@ -1,0 +1,142 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  padding: 0.5rem;
+  min-width: 60px;
+}
+
+.circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.circle:hover {
+  background-color: #d5d5d5;
+}
+
+.circle-active {
+  background-color: #3b82f6;
+  color: white;
+}
+.circle-completed {
+  background-color: #10b981;
+  color: white;
+}
+.circle-error {
+  background-color: #ef4444;
+  color: white;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+  transition: color 0.2s ease;
+  word-break: break-word;
+  max-width: 100px;
+}
+
+.label-active {
+  color: #3b82f6;
+  font-weight: bold;
+}
+.label-completed {
+  color: #10b981;
+}
+.label-error {
+  color: #ef4444;
+}
+
+.description {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+  margin-top: 0.25rem;
+  max-width: 120px;
+  word-break: break-word;
+}
+
+.description-active {
+  color: #3b82f6;
+}
+.description-completed {
+  color: #10b981;
+}
+.description-error {
+  color: #ef4444;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.content {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .step {
+    min-width: auto;
+    flex: none;
+    width: 25%;
+  }
+
+  .label,
+  .description {
+    font-size: 0.75rem;
+    max-width: 80px;
+  }
+
+  .circle {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .step {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .circle {
+    margin: 0;
+    margin-right: 1rem;
+  }
+
+  .label,
+  .description {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+}
