@@ -31,35 +31,39 @@ const Step: React.FC<StepProps> = ({
   else if (disabled) status = "disabled";
   else status = "default";
 
+  const isMinimal = !icon && index === undefined;
+  
   const stepClassName = mergeStyles(
     styles.step,
     styles[`step-${status}`],
+    isMinimal && styles["step-minimal"],
     disabled && styles.disabled,
     disabled && disabledClassName,
     className,
     "react-stepflow-ui-step"
   );
-
+  
   const circleClass = mergeStyles(
     styles.circle,
     styles[`circle-${status}`],
     circleClassName,
     "react-stepflow-ui-step-circle"
   );
-
+  
   const labelClass = mergeStyles(
     styles.label,
     styles[`label-${status}`],
     labelClassName,
     "react-stepflow-ui-step-label"
   );
-
+  
   const descriptionClass = mergeStyles(
     styles.description,
     styles[`description-${status}`],
     descriptionClassName,
     "react-stepflow-ui-step-description"
   );
+
 
   return (
     <div className={stepClassName} {...props}>
