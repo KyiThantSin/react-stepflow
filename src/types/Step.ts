@@ -7,4 +7,13 @@ export interface StepProps {
   error?: boolean;
   disabled?: boolean;
   icon?: ReactNode;
+  label?: ReactNode;
+  description?: ReactNode;
+  children?: ReactNode;
+  onClick?: (index: number) => void;
+  className?: string;
+  circleClassName?: string;
+  labelClassName?: string;
+  descriptionClassName?: string;
+  disabledClassName?: string;
 }
