@@ -1,0 +1,15 @@
+.stepper {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.horizontal {
+  flex-direction: row;
+  align-items: center;
+}
+
+.vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
