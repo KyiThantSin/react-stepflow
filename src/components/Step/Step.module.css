@@ -49,6 +49,10 @@
   border: 2px dashed #000;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .label {
   font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   color: #444;

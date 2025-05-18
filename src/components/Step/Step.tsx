@@ -39,6 +39,7 @@ const Step: React.FC<StepProps> = ({
     isMinimal && styles["step-minimal"],
     disabled && styles.disabled,
     disabled && disabledClassName,
+    !disabled && onClick && "cursor-pointer",
     className,
     "react-stepflow-ui-step"
   );
@@ -64,10 +65,17 @@ const Step: React.FC<StepProps> = ({
     "react-stepflow-ui-step-description"
   );
 
-
   return (
     <div className={stepClassName} {...props}>
-      <div className={circleClass} aria-disabled={disabled}>
+      <div 
+        className={circleClass}
+        onClick={() => {
+          if(!disabled && onClick && index !== undefined){
+            onClick(index)
+          }
+        }}
+        aria-disabled={disabled}
+      >
         {icon ? (
           icon
         ) : completed ? (
