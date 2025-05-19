@@ -1,0 +1,60 @@
+.connector {
+  background-color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.connector-horizontal {
+  width: 100%;
+  height: 2px;
+  margin: 0 0.5rem;
+  align-self: center;
+}
+
+.connector-vertical {
+  height: 3rem;
+  width: 2px;
+  margin: 0.5rem 0;
+  margin-left: calc(clamp(2rem, 6vw, 2.5rem) / 2 - 1px);
+}
+
+.connector-completed {
+  background-color: #000;
+}
+
+.connector-active {
+  background-color: #000;
+  background-image: linear-gradient(90deg, #000 50%, #e0e0e0 50%);
+  background-size: 10px 100%;
+  animation: progress 2s linear infinite;
+}
+
+.connector-disabled {
+  opacity: 0.4;
+}
+
+@keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 20px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .connector-vertical {
+    margin-left: calc(2rem / 2 - 1px);
+  }
+}
+
+@media (max-width: 480px) {
+  .connector-horizontal {
+    display: none;
+  }
+
+  .connector-vertical {
+    margin-left: calc(2rem / 2 - 1px);
+    height: 2rem;
+  }
+}
