@@ -204,10 +204,6 @@
   .textContainer {
     max-width: 80px;
   }
-  
-  .step:not(:last-child)::after {
-    top: calc(2rem / 2 + 0.5rem);
-  }
 }
 
 @media (max-width: 480px) {
