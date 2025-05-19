@@ -2,10 +2,12 @@ import React from "react";
 import { StepperProps, StepProps } from "../../types";
 import styles from "./Stepper.module.css";
 import mergeStyles from "../../utils/classNames";
+import StepConnector from "../StepConnector/StepConnector";
 
 const Stepper: React.FC<StepperProps> = ({
   activeStep = 0,
   orientation = "horizontal",
+  showConnector = true,
   className,
   children,
 }) => {
@@ -26,6 +28,7 @@ const Stepper: React.FC<StepperProps> = ({
         if (!React.isValidElement(child)) return null;
         // guarnatees child has props
         const childElement = child as React.ReactElement<StepProps>;
+        const isLastStep = index === childrenArray?.length - 1;
 
         const stepProps = {
           ...childElement.props, 
@@ -38,7 +41,24 @@ const Stepper: React.FC<StepperProps> = ({
           orientation: childElement.props.orientation ?? orientation,
         };
 
-        return React.cloneElement(childElement, stepProps);
+        return(
+          <React.Fragment key={index}>
+            {/* steps */}
+            {React.cloneElement(childElement, stepProps)} 
+
+            {/* connector */}
+            {
+              showConnector && !isLastStep && (
+                <StepConnector 
+                  orientation = {orientation}
+                  completed = {index < activeStep}
+                  active = {index === activeStep}
+                  disabled={childElement.props.disabled}
+                />
+              )
+            }
+          </React.Fragment>
+        )
       })}
     </div>
   );

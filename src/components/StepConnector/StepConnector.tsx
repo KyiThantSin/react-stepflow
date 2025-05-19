@@ -23,9 +23,9 @@ const StepConnector: React.FC<StepConnectorProps> = ({
 
   return (
     <div 
-        className={connectorClassName} 
-        style={style} 
-        aria-hidden="true" 
+      className={connectorClassName} 
+      style={style} 
+      aria-hidden="true" 
     />
   );
 };
