@@ -20,6 +20,7 @@ const Step: React.FC<StepProps> = ({
   labelClassName,
   descriptionClassName,
   disabledClassName,
+  orientation,
   ...props
 }) => {
   let status: "disabled" | "error" | "active" | "completed" | "default" =
@@ -32,9 +33,10 @@ const Step: React.FC<StepProps> = ({
   else status = "default";
 
   const isMinimal = !icon && index === undefined;
-  
+
   const stepClassName = mergeStyles(
     styles.step,
+    orientation === "vertical" ? styles.stepVerticalLayout : styles.stepHorizontalLayout,
     styles[`step-${status}`],
     isMinimal && styles["step-minimal"],
     disabled && styles.disabled,
@@ -43,21 +45,21 @@ const Step: React.FC<StepProps> = ({
     className,
     "react-stepflow-ui-step"
   );
-  
+
   const circleClass = mergeStyles(
     styles.circle,
     styles[`circle-${status}`],
     circleClassName,
     "react-stepflow-ui-step-circle"
   );
-  
+
   const labelClass = mergeStyles(
     styles.label,
     styles[`label-${status}`],
     labelClassName,
     "react-stepflow-ui-step-label"
   );
-  
+
   const descriptionClass = mergeStyles(
     styles.description,
     styles[`description-${status}`],
@@ -67,15 +69,14 @@ const Step: React.FC<StepProps> = ({
 
   return (
     <div className={stepClassName} {...props}>
-      <div 
+      <div
         className={circleClass}
         onClick={() => {
-          if(!disabled && onClick && index !== undefined){
-            onClick(index)
+          if (!disabled && onClick && index !== undefined) {
+            onClick(index);
           }
         }}
-        aria-disabled={disabled}
-      >
+        aria-disabled={disabled}>
         {icon ? (
           icon
         ) : completed ? (
@@ -87,7 +88,11 @@ const Step: React.FC<StepProps> = ({
         )}
       </div>
 
-      <div className={styles.textContainer}>
+      <div
+        className={mergeStyles(
+          styles.textContainer,
+          orientation === "vertical" ? styles.textConfigRight : styles.textConfigBelow
+        )}>
         {label && <div className={labelClass}>{label}</div>}
         {description && <div className={descriptionClass}>{description}</div>}
       </div>

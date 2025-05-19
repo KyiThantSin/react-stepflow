@@ -16,4 +16,5 @@ export interface StepProps {
   labelClassName?: string;
   descriptionClassName?: string;
   disabledClassName?: string;
+  orientation?: "horizontal" | "vertical";
 }
