@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export interface StepProps {
   index?: number;
@@ -17,4 +17,9 @@ export interface StepProps {
   descriptionClassName?: string;
   disabledClassName?: string;
   orientation?: "horizontal" | "vertical";
+  circleStyle?: CSSProperties;
+  activeCircleStyle?: CSSProperties;
+  completedCircleStyle?: CSSProperties;
+  errorCircleStyle?: CSSProperties;
+  disabledCircleStyle?: CSSProperties;
 }

@@ -21,6 +21,11 @@ const Step: React.FC<StepProps> = ({
   descriptionClassName,
   disabledClassName,
   orientation,
+  circleStyle,
+  activeCircleStyle,
+  completedCircleStyle,
+  errorCircleStyle,
+  disabledCircleStyle,
   ...props
 }) => {
   let status: "disabled" | "error" | "active" | "completed" | "default" =
@@ -53,6 +58,14 @@ const Step: React.FC<StepProps> = ({
     "react-stepflow-ui-step-circle"
   );
 
+  const mergedCircleStyle = {
+    ...circleStyle,
+    ...(active && activeCircleStyle),
+    ...(completed && completedCircleStyle),
+    ...(error && errorCircleStyle),
+    ...(disabled && disabledCircleStyle),
+  };
+
   const labelClass = mergeStyles(
     styles.label,
     styles[`label-${status}`],
@@ -71,6 +84,7 @@ const Step: React.FC<StepProps> = ({
     <div className={stepClassName} {...props}>
       <div
         className={circleClass}
+        style={mergedCircleStyle}
         onClick={() => {
           if (!disabled && onClick && index !== undefined) {
             onClick(index);
