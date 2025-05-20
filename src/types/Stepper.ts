@@ -5,4 +5,5 @@ export interface StepperProps {
   className?: string;
   children: ReactNode;
   showConnector?: boolean;
+  connectorColor?: string;
 }

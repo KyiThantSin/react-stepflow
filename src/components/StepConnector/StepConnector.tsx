@@ -9,22 +9,30 @@ const StepConnector: React.FC<StepConnectorProps> = ({
   active = false,
   disabled = false,
   className,
-  style, // inline custom style
+  style,
+  completedColor,
+  activeColor,
 }) => {
   const connectorClassName = mergeStyles(
     styles.connector,
     styles[`connector-${orientation}`],
-    completed && styles["connector-completed"],
-    active && styles["connector-active"],
+    completed && !completedColor && styles["connector-completed"],
+    active && !activeColor && styles["connector-active"],
     disabled && styles["connector-disabled"],
     className,
     "react-stepflow-ui-connector"
   );
 
+  const dynamicStyle = {
+    ...style,
+    ...(completed && completedColor && { backgroundColor: completedColor }),
+    ...(active && activeColor && { backgroundColor: activeColor }),
+  };
+
   return (
     <div 
       className={connectorClassName} 
-      style={style} 
+      style={dynamicStyle} 
       aria-hidden="true" 
     />
   );

@@ -10,6 +10,7 @@ const Stepper: React.FC<StepperProps> = ({
   showConnector = true,
   className,
   children,
+  connectorColor,
 }) => {
   const stepperClassName = mergeStyles(
     styles.stepper,
@@ -50,10 +51,12 @@ const Stepper: React.FC<StepperProps> = ({
             {
               showConnector && !isLastStep && (
                 <StepConnector 
-                  orientation = {orientation}
-                  completed = {index < activeStep}
-                  active = {index === activeStep}
+                  orientation={orientation}
+                  completed={index < activeStep}
+                  active={index === activeStep}
                   disabled={childElement.props.disabled}
+                  completedColor={connectorColor}
+                  activeColor={connectorColor}
                 />
               )
             }
