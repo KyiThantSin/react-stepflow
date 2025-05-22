@@ -7,4 +7,6 @@ export interface StepperProps {
   showConnector?: boolean;
   connectorColor?: string;
   connectorThickness?: string | number;
+  smoothTransition?: boolean;
+  scrollComponent?: boolean;
 }

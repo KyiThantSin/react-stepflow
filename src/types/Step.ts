@@ -10,6 +10,7 @@ export interface StepProps {
   label?: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
+  component?: ReactNode;
   onClick?: (index: number) => void;
   className?: string;
   circleClassName?: string;

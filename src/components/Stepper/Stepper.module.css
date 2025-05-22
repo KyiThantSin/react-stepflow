@@ -1,3 +1,10 @@
+.stepperWrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
 .stepper {
   display: flex;
   width: 100%;
@@ -15,4 +22,82 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+}
+
+.contentContainer {
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100%;
+  min-height: 100px;
+}
+
+.smoothTransition {
+  transition: all 0.3s ease-in-out;
+}
+
+.scrollContent {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.contentBelow {
+  margin-top: 2rem;
+}
+
+.contentBeside {
+  margin-left: 2rem;
+}
+
+@media (min-width: 600px) and (max-width: 819px) {
+  .stepperWrapper:has(.vertical) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stepperWrapper:has(.vertical) .stepper {
+    width: 100%;
+    max-width: none;
+  }
+
+  .stepperWrapper:has(.vertical) .contentContainer {
+    margin-top: 2rem;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 1024px) {
+  .stepperWrapper:has(.vertical) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .stepperWrapper:has(.vertical) .stepper {
+    width: 40%;
+    min-width: 250px;
+    max-width: 320px;
+  }
+
+  .stepperWrapper:has(.vertical) .contentContainer {
+    flex: 1;
+    margin-top: 0;
+    margin-left: 3rem;
+  }
+}
+/* large screens */
+@media (min-width: 1024px) {
+  .stepperWrapper:has(.vertical) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .stepperWrapper:has(.vertical) .stepper {
+    width: 30%;
+    min-width: 250px;
+    max-width: 350px;
+  }
+  .stepperWrapper:has(.vertical) .contentContainer {
+    flex: 1;
+    margin-top: 0;
+    margin-left: 6rem;
+  }
 }
