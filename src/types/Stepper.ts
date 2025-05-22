@@ -6,4 +6,5 @@ export interface StepperProps {
   children: ReactNode;
   showConnector?: boolean;
   connectorColor?: string;
+  connectorThickness?: string | number;
 }

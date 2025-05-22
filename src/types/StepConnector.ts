@@ -9,4 +9,5 @@ export interface StepConnectorProps {
     style?: React.CSSProperties;
     completedColor?: string;
     activeColor?: string;
+    thickness?: string | number;
 }

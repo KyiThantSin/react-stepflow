@@ -12,6 +12,7 @@ const StepConnector: React.FC<StepConnectorProps> = ({
   style,
   completedColor,
   activeColor,
+  thickness,
 }) => {
   const connectorClassName = mergeStyles(
     styles.connector,
@@ -27,6 +28,10 @@ const StepConnector: React.FC<StepConnectorProps> = ({
     ...style,
     ...(completed && completedColor && { backgroundColor: completedColor }),
     ...(active && activeColor && { backgroundColor: activeColor }),
+    ...(thickness && { 
+      [orientation === "horizontal" ? "height" : "width"]: 
+        typeof thickness === "number" ? `${thickness}rem` : thickness 
+    }),
   };
 
   return (

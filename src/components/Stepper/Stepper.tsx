@@ -11,6 +11,7 @@ const Stepper: React.FC<StepperProps> = ({
   className,
   children,
   connectorColor,
+  connectorThickness,
 }) => {
   const stepperClassName = mergeStyles(
     styles.stepper,
@@ -57,6 +58,7 @@ const Stepper: React.FC<StepperProps> = ({
                   disabled={childElement.props.disabled}
                   completedColor={connectorColor}
                   activeColor={connectorColor}
+                  thickness={connectorThickness}
                 />
               )
             }
