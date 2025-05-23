@@ -28,8 +28,8 @@ const Stepper: React.FC<StepperProps> = ({
 
   // reset stepContentRefs array 
   useEffect(() => {
-    stepContentRefs.current = stepContentRefs.current.slice(0, childrenArray.length);
-  }, [childrenArray.length]);
+    stepContentRefs.current = stepContentRefs.current?.slice(0, childrenArray?.length);
+  }, [childrenArray?.length]);
 
   // get the active step's component
   const activeStepComponent = childrenArray[activeStep]?.props?.component;
@@ -44,7 +44,7 @@ const Stepper: React.FC<StepperProps> = ({
     let maxVisiblePercentage = 0;
     let mostVisibleIndex = activeStep; // default 
     
-    stepContentRefs.current.forEach((stepRef, index) => {
+    stepContentRefs.current?.forEach((stepRef, index) => {
       if (!stepRef) return;
       
       const stepRect = stepRef.getBoundingClientRect();
