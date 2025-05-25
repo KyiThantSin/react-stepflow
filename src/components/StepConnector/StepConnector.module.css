@@ -8,7 +8,7 @@
 .connector-horizontal {
   width: clamp(70px, 18vw, 100px);
   height: 0.15rem;
-  margin: 0.5rem 0 clamp(1.5rem, 5vw, 3.75rem) 0;
+  margin: 0.5rem 0 clamp(3.5rem, 5vw, 3.75rem) 0;
   align-self: center;
 }
 
@@ -16,7 +16,7 @@
   height: auto;
   min-height: clamp(3rem, 8vh, 4rem);
   width: 0.15rem;
-  margin-left: calc(1rem + 10px);
+  margin-left: calc(1rem + 6px);
 }
 
 .connector-completed {
@@ -52,7 +52,7 @@
   .connector-vertical {
     min-height: clamp(2rem, 4vh, 2.5rem);
     width: 0.1rem;
-    left: calc(0.5rem + 8px);
+    left: calc(0.5rem + 6px);
   }
   
   .connector-horizontal {
@@ -63,7 +63,7 @@
 
 @media (max-width: 768px) {
   .connector-vertical {
-    left: calc(0.75rem + 10px);
+    left: calc(0.75rem + 6px);
   }
   
   .connector-horizontal {
@@ -79,7 +79,7 @@
   }
 
   .connector-vertical {
-    left: calc(0.75rem + 8px);
+    left: calc(0.75rem + 6px);
     min-height: clamp(2.5rem, 6vh, 3rem);
   }
 }

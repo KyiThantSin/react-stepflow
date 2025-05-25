@@ -82,7 +82,8 @@ const Step: React.FC<StepProps> = ({
 
   return (
     <div className={stepClassName} {...props}>
-      <div
+      <button
+        type="button"
         className={circleClass}
         style={mergedCircleStyle}
         onClick={() => {
@@ -90,7 +91,8 @@ const Step: React.FC<StepProps> = ({
             onClick(index);
           }
         }}
-        aria-disabled={disabled}>
+        disabled={disabled}
+        aria-label={label ? `Step ${index !== undefined ? index + 1 : ""}: ${label}` : `Step ${index !== undefined ? index + 1 : ''}`}>
         {icon ? (
           icon
         ) : completed ? (
@@ -100,7 +102,7 @@ const Step: React.FC<StepProps> = ({
         ) : (
           <span>{index !== undefined ? index + 1 : ""}</span>
         )}
-      </div>
+      </button>
 
       <div
         className={mergeStyles(
