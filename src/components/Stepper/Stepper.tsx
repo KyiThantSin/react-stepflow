@@ -24,15 +24,15 @@ const Stepper: React.FC<StepperProps> = ({
   }, [initialActiveStep]);
 
   // filter valid children and convert to array
-  const childrenArray = React.Children.toArray(children).filter(Boolean) as React.ReactElement<StepProps>[];
+  const childrenArray = React.Children.toArray(children)?.filter(Boolean) as React.ReactElement<StepProps>[];
 
   // reset stepContentRefs array 
   useEffect(() => {
-    stepContentRefs.current = stepContentRefs.current?.slice(0, childrenArray?.length);
+    stepContentRefs.current = stepContentRefs?.current?.slice(0, childrenArray?.length);
   }, [childrenArray?.length]);
 
   // get the active step's component
-  const activeStepComponent = childrenArray[activeStep]?.props?.component;
+  const activeStepComponent = childrenArray?.[activeStep]?.props?.component;
 
   // scroll Logic 
   const updateActiveStepOnScroll = useCallback(() => {
@@ -93,12 +93,12 @@ const Stepper: React.FC<StepperProps> = ({
 
   // scroll to active step
   useEffect(() => {
-    if (!scrollComponent || !scrollContainerRef.current) return;
+    if (!scrollComponent || !scrollContainerRef?.current) return;
     
-    const stepRef = stepContentRefs.current[activeStep];
+    const stepRef = stepContentRefs?.current[activeStep];
     if (!stepRef) return;
     
-    const container = scrollContainerRef.current;
+    const container = scrollContainerRef?.current;
     const isHorizontal = orientation === "horizontal";
     
     if (isHorizontal) {
@@ -108,13 +108,13 @@ const Stepper: React.FC<StepperProps> = ({
         inline: 'start'
       });
     } else {
-      const containerRect = container.getBoundingClientRect();
+      const containerRect = container?.getBoundingClientRect();
       const stepRect = stepRef.getBoundingClientRect();
       // relativeTop = step position - container position (both from viewport top)
-      const relativeTop = stepRect.top - containerRect.top;
+      const relativeTop = stepRect.top - containerRect?.top;
       
-      container.scrollTo({
-        top: container.scrollTop + relativeTop, // scroll from current position to relative top
+      container?.scrollTo({
+        top: container?.scrollTop + relativeTop, // scroll from current position to relative top
         behavior: 'smooth'
       });
     }
@@ -186,10 +186,20 @@ const Stepper: React.FC<StepperProps> = ({
         ref={scrollContainerRef}
         className={scrollContainerClassName}>
         {childrenArray.map((child, index) => {
-          // ensure child is a valid React element and has a 'component' prop
+          // ensure child is a valid React element
           if (!React.isValidElement(child)) return null;
           const childElement = child as React.ReactElement<StepProps>;
-          if (!childElement.props.component) return null;
+          
+          // check for missing component prop in development
+          if (!childElement.props.component) {
+            if (process.env.NODE_ENV !== 'production') {
+              console.warn(
+                `Step at index ${index} is missing the required 'component' prop and will not be rendered. ` +
+                'Please provide a component to render for this step when using scrollComponent={true}.'
+              );
+            }
+            return null;
+          }
           
           const isActive = index === activeStep;
           const isNextStep = index === activeStep + 1; // preview styling
