@@ -81,13 +81,13 @@ const Stepper: React.FC<StepperProps> = ({
 
   // scroll listener
   useEffect(() => {
-    if (!scrollComponent || !scrollContainerRef.current) return;
+    if (!scrollComponent || !scrollContainerRef?.current) return;
     
-    const container = scrollContainerRef.current;
-    container.addEventListener('scroll', updateActiveStepOnScroll);
+    const container = scrollContainerRef?.current;
+    container?.addEventListener('scroll', updateActiveStepOnScroll);
     
     return () => {
-      container.removeEventListener('scroll', updateActiveStepOnScroll);
+      container?.removeEventListener('scroll', updateActiveStepOnScroll);
     };
   }, [scrollComponent, updateActiveStepOnScroll]);
 
