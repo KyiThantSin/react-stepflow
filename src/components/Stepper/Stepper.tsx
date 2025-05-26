@@ -145,7 +145,7 @@ const Stepper: React.FC<StepperProps> = ({
       if (!React.isValidElement(child)) return null;
       const childElement = child as React.ReactElement<StepProps>;
       
-      const isLastStep = index === childrenArray.length - 1;
+      const isLastStep = index === childrenArray?.length - 1;
 
       const stepProps = {
         ...childElement.props, 
@@ -185,7 +185,7 @@ const Stepper: React.FC<StepperProps> = ({
       <div 
         ref={scrollContainerRef}
         className={scrollContainerClassName}>
-        {childrenArray.map((child, index) => {
+        {childrenArray?.map((child, index) => {
           // ensure child is a valid React element
           if (!React.isValidElement(child)) return null;
           const childElement = child as React.ReactElement<StepProps>;
@@ -224,8 +224,14 @@ const Stepper: React.FC<StepperProps> = ({
     );
   };
 
+  const stepperWrapperClassName = mergeStyles(
+    styles.stepperWrapper,
+    styles[`stepperWrapper${orientation?.charAt(0)?.toUpperCase() + orientation?.slice(1)}`],
+    "react-stepflow-ui-stepper-wrapper"
+  );
+
   return (
-    <div className={styles.stepperWrapper}>
+    <div className={stepperWrapperClassName}>
       <div
         className={stepperClassName}
         role="group"

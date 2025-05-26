@@ -6,6 +6,14 @@
   overflow: hidden;
 }
 
+.stepperWrapperHorizontal {
+  flex-direction: column;
+}
+
+.stepperWrapperVertical {
+  flex-direction: column;
+}
+
 .stepper {
   display: flex;
   width: 100%;
@@ -126,35 +134,35 @@
 
 @media (min-width: 600px) and (max-width: 819px) {
   /* children */
-  .stepperWrapper:has(.vertical) { 
+  .stepperWrapperVertical { 
     flex-direction: column;
     align-items: stretch;
   }
 
-  .stepperWrapper:has(.vertical) .stepper {
+  .stepperWrapperVertical .stepper {
     width: 100%;
     max-width: none;
   }
 
-  .stepperWrapper:has(.vertical) .contentContainer {
+  .stepperWrapperVertical .contentContainer {
     margin-top: 2rem;
     margin-left: 0;
   }
 }
 
 @media (min-width: 820px) and (max-width: 1024px) {
-  .stepperWrapper:has(.vertical) {
+  .stepperWrapperVertical {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  .stepperWrapper:has(.vertical) .stepper {
+  .stepperWrapperVertical .stepper {
     width: 40%;
     min-width: 250px;
     max-width: 320px;
   }
 
-  .stepperWrapper:has(.vertical) .contentContainer {
+  .stepperWrapperVertical .contentContainer {
     flex: 1;
     margin-top: 0;
     margin-left: 3rem;
@@ -162,23 +170,23 @@
 }
 /* large screens */
 @media (min-width: 1024px) {
-  .stepperWrapper:has(.vertical) {
+  .stepperWrapperVertical {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  .stepperWrapper:has(.vertical) .stepper {
+  .stepperWrapperVertical .stepper {
     width: 30%;
     min-width: 250px;
     max-width: 350px;
   }
-  .stepperWrapper:has(.vertical) .contentContainer {
+  .stepperWrapperVertical .contentContainer {
     flex: 1;
     margin-top: 0;
     margin-left: 8rem;
   }
   
-  .stepperWrapper:has(.vertical) .scrollContainer {
+  .stepperWrapperVertical .scrollContainer {
     margin-left: 8rem;
     margin-top: 0;
   }
