@@ -4,8 +4,8 @@
   
   [![npm](https://img.shields.io/npm/v/react-stepflow?style=flat-square)](https://www.npmjs.com/package/react-stepflow)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-  [![GitHub Issues](https://img.shields.io/github/issues/KyiThantSin/react-stepflow?style=flat-square)](https://github.com/KyiThantSin/react-stepflow/issues)
   [![Minzipped Size](https://badgen.net/bundlephobia/minzip/react-stepflow?style=flat-square)](https://bundlephobia.com/package/react-stepflow)
+  [![Bundle Size](https://img.shields.io/badge/bundle%20size-20%20KB-brightgreen?style=flat-square)](https://github.com/KyiThantSin/react-stepflow)
   
   <img src="https://via.placeholder.com/800x400.png?text=React+StepFlow+Demo" alt="React StepFlow Demo" width="100%" />
 </div>
@@ -17,7 +17,8 @@
 - **Responsive** - Works on all device sizes
 - **Accessible** - Built with ARIA attributes and keyboard navigation
 - **TypeScript Support** - Full TypeScript definitions included
-- **Lightweight** - Small bundle size with zero dependencies
+- **Lightweight** - Only 20KB bundle size with zero dependencies
+- **Tree-Shakable** - Import only what you need to minimize bundle size
 
 ## 🚀 Installation
 
@@ -30,6 +31,19 @@ yarn add react-stepflow
 
 # pnpm
 pnpm add react-stepflow
+```
+
+### Tree-Shaking Support
+
+React StepFlow fully supports tree-shaking, allowing you to import only the components you need. This helps reduce your final bundle size even further.
+
+```jsx
+// Import only what you need
+import { Stepper, Step } from 'react-stepflow';
+
+// Or import individual components
+import Stepper from 'react-stepflow/dist/components/Stepper';
+import Step from 'react-stepflow/dist/components/Step';
 ```
 
 ## 🛠 Framework Compatibility
@@ -451,6 +465,22 @@ The stepper component follows accessibility best practices:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 MIT License is a permissive free software license that allows for reuse of code within proprietary software, provided all copies of the licensed software include a copy of the MIT License terms and the copyright notice. It's one of the most common open source licenses and is generally considered business-friendly.
+
+## 📊 Versioning Strategy
+
+React StepFlow follows [Semantic Versioning](https://semver.org/) (SemVer):
+
+- **Major version (x.0.0)**: Contains breaking changes that require updates to your code
+- **Minor version (0.x.0)**: Adds new features in a backward-compatible manner
+- **Patch version (0.0.x)**: Backward-compatible bug fixes and performance improvements
+
+Currently at version 0.1.0, we're in the initial development phase. When we reach version 1.0.0, the API will be considered stable, and future updates will strictly follow SemVer principles.
+
+### Release Schedule
+
+- **Patch releases**: As needed for bug fixes
+- **Minor releases**: Every 1-2 months for new features
+- **Major releases**: Announced with a 3-month deprecation period for breaking changes
 
 ## 🙏 Acknowledgments
 
