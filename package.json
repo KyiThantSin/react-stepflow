@@ -1,6 +1,6 @@
 {
   "name": "@kyits/react-stepflow",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "description": "A customizable stepper component for React applications with smooth animations",
   "license": "MIT",
