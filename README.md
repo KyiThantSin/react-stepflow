@@ -6,6 +6,7 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
   [![Minzipped Size](https://badgen.net/bundlephobia/minzip/@kyits/react-stepflow?style=flat-square)](https://bundlephobia.com/package/@kyits/react-stepflow)
   [![Bundle Size](https://img.shields.io/badge/bundle%20size-20%20KB-brightgreen?style=flat-square)](https://github.com/KyiThantSin/react-stepflow)
+  [![Demo](https://img.shields.io/badge/demo-live-blue?style=flat-square)](https://react-stepflow-demo.vercel.app/)
   
   <!-- <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
     <img src="./demo/horizontal-stepper.png" alt="React StepFlow Horizontal Demo" width="100%" />
@@ -22,6 +23,17 @@
 - **TypeScript Support** - Full TypeScript definitions included
 - **Lightweight** - Only 20KB bundle size with zero dependencies
 - **Tree-Shakable** - Import only what you need to minimize bundle size
+
+## 🔍 Live Demo
+
+Check out the live demo to see React StepFlow in action:
+
+👉 **[Live Demo](https://react-stepflow-demo.vercel.app/)**
+
+The demo showcases both horizontal and vertical stepper layouts with various features including:
+- Custom icons and styling
+- Step navigation with smooth transitions
+- Scrollable content areas
 
 ## 🚀 Installation
 
