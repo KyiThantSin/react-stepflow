@@ -2,9 +2,9 @@
   <h1>React StepFlow</h1>
   <p>A flexible and customizable stepper component for React applications</p>
   
-  [![npm](https://img.shields.io/npm/v/react-stepflow?style=flat-square)](https://www.npmjs.com/package/react-stepflow)
+  [![npm](https://img.shields.io/npm/v/@kyits/react-stepflow?style=flat-square)](https://www.npmjs.com/package/@kyits/react-stepflow)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-  [![Minzipped Size](https://badgen.net/bundlephobia/minzip/react-stepflow?style=flat-square)](https://bundlephobia.com/package/react-stepflow)
+  [![Minzipped Size](https://badgen.net/bundlephobia/minzip/@kyits/react-stepflow?style=flat-square)](https://bundlephobia.com/package/@kyits/react-stepflow)
   [![Bundle Size](https://img.shields.io/badge/bundle%20size-20%20KB-brightgreen?style=flat-square)](https://github.com/KyiThantSin/react-stepflow)
   
   <!-- <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
@@ -27,13 +27,13 @@
 
 ```bash
 # npm
-npm install react-stepflow
+npm install @kyits/react-stepflow
 
 # yarn
-yarn add react-stepflow
+yarn add @kyits/react-stepflow
 
 # pnpm
-pnpm add react-stepflow
+pnpm add @kyits/react-stepflow
 ```
 
 ### Tree-Shaking Support
@@ -42,11 +42,11 @@ React StepFlow fully supports tree-shaking, allowing you to import only the comp
 
 ```jsx
 // Import only what you need
-import { Stepper, Step } from 'react-stepflow';
+import { Stepper, Step } from '@kyits/react-stepflow';
 
 // Or import individual components
-import Stepper from 'react-stepflow/dist/components/Stepper';
-import Step from 'react-stepflow/dist/components/Step';
+import Stepper from '@kyits/react-stepflow/dist/components/Stepper';
+import Step from '@kyits/react-stepflow/dist/components/Step';
 ```
 
 ## 🛠 Framework Compatibility
@@ -69,7 +69,7 @@ import Step from 'react-stepflow/dist/components/Step';
 ```jsx
 'use client';
 import { useState } from 'react';
-import { Stepper, Step } from 'react-stepflow';
+import { Stepper, Step } from '@kyits/react-stepflow';
 
 export default function CheckoutStepper() {
   const [activeStep, setActiveStep] = useState(0);
@@ -210,7 +210,7 @@ React StepFlow comes with beautiful default styles out of the box, but also prov
 Simply import and use the components - they'll look great with zero configuration:
 
 ```jsx
-import { Stepper, Step } from 'react-stepflow';
+import { Stepper, Step } from '@kyits/react-stepflow';
 
 function MyStepper() {
   return (
