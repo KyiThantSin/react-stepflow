@@ -7,7 +7,10 @@
   [![Minzipped Size](https://badgen.net/bundlephobia/minzip/react-stepflow?style=flat-square)](https://bundlephobia.com/package/react-stepflow)
   [![Bundle Size](https://img.shields.io/badge/bundle%20size-20%20KB-brightgreen?style=flat-square)](https://github.com/KyiThantSin/react-stepflow)
   
-  <img src="https://via.placeholder.com/800x400.png?text=React+StepFlow+Demo" alt="React StepFlow Demo" width="100%" />
+  <!-- <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
+    <img src="./demo/horizontal-stepper.png" alt="React StepFlow Horizontal Demo" width="100%" />
+    <img src="./demo/vertical-stepper.png" alt="React StepFlow Vertical Demo" width="100%" />
+  </div> -->
 </div>
 
 ## ✨ Features
@@ -450,7 +453,7 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## ♿ Accessibility
+## Accessibility
 
 The stepper component follows accessibility best practices:
 
@@ -466,21 +469,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 MIT License is a permissive free software license that allows for reuse of code within proprietary software, provided all copies of the licensed software include a copy of the MIT License terms and the copyright notice. It's one of the most common open source licenses and is generally considered business-friendly.
 
-## 📊 Versioning Strategy
 
-React StepFlow follows [Semantic Versioning](https://semver.org/) (SemVer):
-
-- **Major version (x.0.0)**: Contains breaking changes that require updates to your code
-- **Minor version (0.x.0)**: Adds new features in a backward-compatible manner
-- **Patch version (0.0.x)**: Backward-compatible bug fixes and performance improvements
-
-Currently at version 0.1.0, we're in the initial development phase. When we reach version 1.0.0, the API will be considered stable, and future updates will strictly follow SemVer principles.
-
-### Release Schedule
-
-- **Patch releases**: As needed for bug fixes
-- **Minor releases**: Every 1-2 months for new features
-- **Major releases**: Announced with a 3-month deprecation period for breaking changes
 
 ## 🙏 Acknowledgments
 
