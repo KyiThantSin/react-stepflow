@@ -24,3 +24,5 @@ coverage/
 Thumbs.db
 
 .env
+*storybook.log
+storybook-static

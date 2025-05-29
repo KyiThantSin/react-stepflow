@@ -1,4 +1,7 @@
 src/
+
+src/stories/
+
 tests/
 __tests__/
 
@@ -21,3 +24,6 @@ yarn.lock
 
 scripts/
 docs/
+
+.storybook/
+storybook-static/
