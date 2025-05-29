@@ -24,16 +24,20 @@
 - **Lightweight** - Only 20KB bundle size with zero dependencies
 - **Tree-Shakable** - Import only what you need to minimize bundle size
 
-## 🔍 Live Demo
+## 🔍 Live Demo & Documentation
 
 Check out the live demo to see React StepFlow in action:
 
 👉 **[Live Demo](https://react-stepflow-demo.vercel.app/)**
 
+👉 **[Storybook Documentation](https://kyithantsin.github.io/react-stepflow/)**
+
 The demo showcases both horizontal and vertical stepper layouts with various features including:
 - Custom icons and styling
 - Step navigation with smooth transitions
 - Scrollable content areas
+
+The Storybook documentation provides interactive examples of all components and their various states and configurations.
 
 ## 🚀 Installation
 
