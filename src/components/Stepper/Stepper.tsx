@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { StepperProps, StepProps } from "../../types";
 import styles from "./Stepper.module.css";
 import mergeStyles from "../../utils/classNames";
 import StepConnector from "../StepConnector/StepConnector";
 
 const Stepper: React.FC<StepperProps> = ({
-  activeStep: initialActiveStep = 0,
+  activeStep: externalActiveStep = 0,
   orientation = "horizontal",
   showConnector = true,
   className,
@@ -15,34 +15,34 @@ const Stepper: React.FC<StepperProps> = ({
   smoothTransition = false,
   scrollComponent = false,
 }) => {
-  const [activeStep, setActiveStep] = useState(initialActiveStep);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const stepContentRefs = useRef<(HTMLDivElement | null)[]>([]); 
+  const [internalActiveStep, setInternalActiveStep] = useState(externalActiveStep);
+  
+  // for scroll component, use internal state to track the visible step
+  // for non-scroll component, use the external prop directly
+  const activeStep = scrollComponent ? internalActiveStep : externalActiveStep;
   
   useEffect(() => {
-    setActiveStep(initialActiveStep);
-  }, [initialActiveStep]);
+    setInternalActiveStep(externalActiveStep);
+  }, [externalActiveStep]);
+  
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const stepContentRefs = useRef<(HTMLDivElement | null)[]>([]); 
 
   // filter valid children and convert to array
   const childrenArray = React.Children.toArray(children)?.filter(Boolean) as React.ReactElement<StepProps>[];
 
-  // reset stepContentRefs array 
-  useEffect(() => {
-    stepContentRefs.current = stepContentRefs?.current?.slice(0, childrenArray?.length);
-  }, [childrenArray?.length]);
-
   // get the active step's component
   const activeStepComponent = childrenArray?.[activeStep]?.props?.component;
 
-  // scroll Logic 
-  const updateActiveStepOnScroll = useCallback(() => {
-    if (!scrollContainerRef.current) return;
+  // during scrolling
+  const calculateMostVisibleStep = (container: HTMLDivElement) => {
+    if (!container) {
+      return activeStep;
+    }
     
-    const container = scrollContainerRef.current;
     const isHorizontal = orientation === "horizontal";
-    
     let maxVisiblePercentage = 0;
-    let mostVisibleIndex = activeStep; // default 
+    let mostVisibleIndex = activeStep; // default
     
     stepContentRefs.current?.forEach((stepRef, index) => {
       if (!stepRef) return;
@@ -54,51 +54,32 @@ const Stepper: React.FC<StepperProps> = ({
       let totalSize = 0;
 
       if (isHorizontal) {
-        totalSize = stepRect.width;
-        const intersectionStart = Math.max(stepRect.left, containerRect.left);
-        const intersectionEnd = Math.min(stepRect.right, containerRect.right);
+        totalSize = stepRect?.width;
+        const intersectionStart = Math.max(stepRect?.left, containerRect?.left);
+        const intersectionEnd = Math.min(stepRect?.right, containerRect?.right);
         visibleSize = intersectionEnd - intersectionStart;
       } else {
-        totalSize = stepRect.height;
-        const intersectionStart = Math.max(stepRect.top, containerRect.top);
-        const intersectionEnd = Math.min(stepRect.bottom, containerRect.bottom);
+        totalSize = stepRect?.height;
+        const intersectionStart = Math.max(stepRect?.top, containerRect?.top);
+        const intersectionEnd = Math.min(stepRect?.bottom, containerRect?.bottom);
         visibleSize = intersectionEnd - intersectionStart;
       }
 
       const visiblePercentage = totalSize > 0 ? (visibleSize / totalSize) * 100 : 0;
       
-      // update if a new step is more visible than the current "mostVisibleIndex"
       if (visiblePercentage > maxVisiblePercentage) {
         maxVisiblePercentage = visiblePercentage;
         mostVisibleIndex = index;
       }
     });
     
-    if (mostVisibleIndex !== activeStep) {
-      setActiveStep(mostVisibleIndex);
-    }
-  }, [orientation, activeStep]); 
+    return mostVisibleIndex;
+  };
 
-  // scroll listener
-  useEffect(() => {
-    if (!scrollComponent || !scrollContainerRef?.current) return;
-    
-    const container = scrollContainerRef?.current;
-    container?.addEventListener('scroll', updateActiveStepOnScroll);
-    
-    return () => {
-      container?.removeEventListener('scroll', updateActiveStepOnScroll);
-    };
-  }, [scrollComponent, updateActiveStepOnScroll]);
-
-  // scroll to active step
-  useEffect(() => {
-    if (!scrollComponent || !scrollContainerRef?.current) return;
-    
+  const scrollToActiveStep = (container: HTMLDivElement) => {
     const stepRef = stepContentRefs?.current[activeStep];
     if (!stepRef) return;
     
-    const container = scrollContainerRef?.current;
     const isHorizontal = orientation === "horizontal";
     
     if (isHorizontal) {
@@ -108,17 +89,37 @@ const Stepper: React.FC<StepperProps> = ({
         inline: 'start'
       });
     } else {
-      const containerRect = container?.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
       const stepRect = stepRef.getBoundingClientRect();
-      // relativeTop = step position - container position (both from viewport top)
-      const relativeTop = stepRect.top - containerRect?.top;
+      const relativeTop = stepRect?.top - containerRect?.top;
       
-      container?.scrollTo({
-        top: container?.scrollTop + relativeTop, // scroll from current position to relative top
+      container.scrollTo({
+        top: container.scrollTop + relativeTop,
         behavior: 'smooth'
       });
     }
-  }, [activeStep, scrollComponent, orientation]);
+  };
+  
+  // scroll logic
+  useEffect(() => {
+    if (!scrollComponent || !scrollContainerRef?.current) return;
+    
+    const container = scrollContainerRef.current;
+    
+    const updateActiveStepOnScroll = () => {
+      const mostVisibleIndex = calculateMostVisibleStep(container);
+      if (mostVisibleIndex !== activeStep) {
+        setInternalActiveStep(mostVisibleIndex);
+      }
+    };
+    
+    container.addEventListener('scroll', updateActiveStepOnScroll);
+    scrollToActiveStep(container);
+    
+    return () => {
+      container.removeEventListener('scroll', updateActiveStepOnScroll);
+    };
+  }, [activeStep, orientation, scrollComponent, internalActiveStep]);
 
   const stepperClassName = mergeStyles(
     styles.stepper,
@@ -213,10 +214,13 @@ const Stepper: React.FC<StepperProps> = ({
             <div 
               key={index}
               ref={(el: HTMLDivElement | null) => {
+                if (stepContentRefs?.current?.length <= childrenArray?.length) {
+                  stepContentRefs.current = stepContentRefs.current?.slice(0, childrenArray?.length);
+                }
                 stepContentRefs.current[index] = el;
               }}
               className={stepContentClass}>
-              {childElement.props.component}
+              {childElement.props?.component}
             </div>
           );
         })}
